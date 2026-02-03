@@ -1,0 +1,192 @@
+<html>
+<head>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Seestar Organizer Pro</title>
+<HTA:APPLICATION ID="seestar" APPLICATIONNAME="Seestar Organizer Pro" BORDER="thin" SCROLL="no" SINGLEINSTANCE="yes" SYSMENU="yes" WINDOWSTATE="normal">
+<style>
+    body { font-family: "Segoe UI", sans-serif; background-color: #121212; color: #ffffff; margin: 0; padding: 20px; text-align: center; }
+    h2 { font-size: 22px; color: #00bfff; margin-top: 0px; margin-bottom: 15px; font-weight: bold; }
+    .main-table { width: 720px; margin: 0 auto; border-spacing: 15px; border-collapse: separate; }
+    .box { background-color: #1e1e1e; border: 1px solid #333; border-radius: 16px; padding: 15px; text-align: left; vertical-align: top; }
+    .instruction-box { font-size: 12px; color: #cccccc; line-height: 1.4; padding: 12px; border-radius: 10px; background-color: #151515; border-left: 4px solid #00bfff; margin-top: 15px; }
+    label { display: block; font-size: 14px; color: #00bfff; margin-bottom: 8px; margin-left: 10px; font-weight: bold; }
+    .input-box { width: 100%; height: 38px; background-color: #000; color: #fff; border: 1px solid #00bfff; padding: 0 15px; border-radius: 16px; font-size: 16px; outline: none; box-sizing: border-box; }
+    .btn-main { width: 690px; background-color: #00bfff; color: #000; font-weight: bold; padding: 16px; border: none; border-radius: 16px; cursor: pointer; font-size: 18px; margin-top: 10px; }
+    .btn-stop { width: 690px; background-color: #ff4d4d; color: #fff; font-weight: bold; padding: 16px; border: none; border-radius: 16px; cursor: pointer; font-size: 18px; display: none; margin-top: 10px; }
+    .btn-small { background-color: #00bfff; color: #000; font-weight: bold; border: none; padding: 8px 20px; cursor: pointer; border-radius: 16px; font-size: 11px; margin-top: 10px; }
+    #progressContainer { width: 690px; height: 30px; background-color: #000; border-radius: 15px; margin: 20px auto; display: none; border: 1px solid #333; overflow: hidden; position: relative; }
+    #progressBar { width: 0%; height: 100%; background-color: #00bfff; }
+    #progressText { position: absolute; width: 100%; text-align: center; top: 5px; font-size: 14px; font-weight: bold; color: #fff; }
+    #statusArea { margin-top: 15px; font-weight: bold; font-size: 22px; height: 28px; }
+    .status-green { color: #00ff00; } .status-red { color: #ff0000; }
+    .highlight { color: #00bfff; font-weight: bold; }
+</style>
+
+<script language="javascript">
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var shell = new ActiveXObject("WScript.Shell");
+    var scriptExecution, monitorInterval, totalFiles = 0;
+
+    window.onload = function() { window.resizeTo(800, 950); loadSettings(); };
+
+    function playSound(type) {
+        try {
+            var soundCmd = (type === "error") ? "Exclamation" : "Asterisk";
+            shell.Run("powershell.exe [System.Media.SystemSounds]::" + soundCmd + ".Play()", 0, false);
+        } catch(e) {}
+    }
+
+    function getAppPath() {
+        var path = decodeURIComponent(window.location.pathname).substring(1).replace(/\//g, "\\");
+        return fso.GetParentFolderName(path);
+    }
+
+    function loadSettings() {
+        var ini = getAppPath() + "\\seestar_settings.ini";
+        if (fso.FileExists(ini)) {
+            var f = fso.OpenTextFile(ini, 1);
+            while (!f.AtEndOfStream) {
+                var line = f.ReadLine();
+                if (line.indexOf("ip=") === 0) document.getElementById("txtIP").value = line.split("=")[1];
+                if (line.indexOf("root=") === 0) document.getElementById("txtRoot").value = line.split("=")[1];
+                if (line.indexOf("setup=") === 0) document.getElementById("txtSetup").value = line.split("=")[1];
+            }
+            f.Close();
+        }
+    }
+
+    function saveSettings() {
+        var f = fso.CreateTextFile(getAppPath() + "\\seestar_settings.ini", true);
+        f.WriteLine("ip=" + document.getElementById("txtIP").value);
+        f.WriteLine("root=" + document.getElementById("txtRoot").value);
+        f.WriteLine("setup=" + document.getElementById("txtSetup").value);
+        f.Close();
+    }
+
+    function Test_Connection() {
+        var ip = document.getElementById("txtIP").value;
+        var status = document.getElementById("statusArea");
+        status.innerHTML = "Pinging Seestar...";
+        var exec = shell.Exec("ping -n 1 -w 1000 " + ip);
+        var output = exec.StdOut.ReadAll();
+        if (output.toLowerCase().indexOf("reply from") !== -1) {
+            status.innerHTML = "Seestar Online"; status.className = "status-green";
+            playSound("success");
+        } else {
+            status.innerHTML = "Seestar Not Found"; status.className = "status-red";
+            playSound("error");
+        }
+    }
+
+    function Run_Organizer() {
+        saveSettings();
+        var ip = document.getElementById("txtIP").value;
+        var root = document.getElementById("txtRoot").value;
+        if (root.slice(-1) != "\\") root += "\\";
+        var vbsFile = getAppPath() + "\\Seestar Organizer Pro.vbs";
+        
+        document.getElementById("statusArea").innerHTML = "PROCESSING...";
+        document.getElementById("statusArea").className = ""; 
+        document.getElementById("btnStart").style.display = "none";
+        document.getElementById("btnStop").style.display = "inline-block";
+        
+        scriptExecution = shell.Exec('wscript.exe "' + vbsFile + '" "' + ip + '" "' + root + '"');
+        
+        monitorInterval = setInterval(function() {
+            if (scriptExecution.Status != 0) { 
+                finishProcess(root); 
+            } else {
+                if (totalFiles == 0 && fso.FileExists(root + "total_files.tmp")) {
+                    var ft = fso.OpenTextFile(root + "total_files.tmp", 1);
+                    totalFiles = parseInt(ft.ReadAll()); ft.Close();
+                    document.getElementById("progressContainer").style.display = "block";
+                }
+                updateUI(root);
+            }
+        }, 500);
+    }
+
+    function updateUI(root) {
+        try {
+            if (totalFiles > 0 && fso.FileExists(root + "files_done.txt")) {
+                var f = fso.OpenTextFile(root + "files_done.txt", 1);
+                var done = parseInt(f.ReadAll()); f.Close();
+                var pct = Math.round((done / totalFiles) * 100);
+                document.getElementById("progressBar").style.width = (pct > 100 ? 100 : pct) + "%";
+                document.getElementById("progressText").innerHTML = pct + "% (" + done + " / " + totalFiles + " files)";
+            }
+            if (fso.FileExists(root + "current_object.tmp")) {
+                var f2 = fso.OpenTextFile(root + "current_object.tmp", 1);
+                document.getElementById("objectDisplay").innerHTML = "Current Object: " + f2.ReadAll(); f2.Close();
+            }
+        } catch(e) {}
+    }
+
+    function finishProcess(root) {
+        clearInterval(monitorInterval);
+        document.getElementById("statusArea").innerHTML = "Process Complete";
+        document.getElementById("statusArea").className = "status-green";
+        document.getElementById("btnStart").style.display = "inline-block";
+        document.getElementById("btnStop").style.display = "none";
+        playSound("success");
+        shell.Run("explorer.exe \"" + root + "\"");
+    }
+
+    function Stop_Organizer() {
+        if (scriptExecution) scriptExecution.Terminate();
+        clearInterval(monitorInterval);
+        document.getElementById("statusArea").innerHTML = "Aborted";
+        document.getElementById("btnStart").style.display = "inline-block";
+        document.getElementById("btnStop").style.display = "none";
+        playSound("error");
+    }
+</script>
+
+<script language="VBScript">
+    Function VBSBrowse()
+        Set objShell = CreateObject("Shell.Application")
+        Set objFolder = objShell.BrowseForFolder(0, "Select Destination Folder", 0, 0)
+        If Not objFolder Is Nothing Then Document.getElementById("txtRoot").value = objFolder.Self.Path
+    End Function
+</script>
+</head>
+<body>
+    <h2>Seestar Organizer Pro</h2>
+    <table class="main-table">
+        <tr>
+            <td colspan="2" class="box">
+                <label>Scope Setup Name:</label>
+                <input type="text" id="txtSetup" class="input-box" placeholder="e.g. Seestar S30 EQ">
+                <div class="instruction-box">This name will appear in parentheses in your folder names.</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="box" width="50%">
+                <label>Seestar IP Address:</label>
+                <input type="text" id="txtIP" class="input-box">
+                <input type="button" value="TEST CONNECTION" class="btn-small" onclick="Test_Connection()">
+                <div class="instruction-box">
+                    You can find the IP address of your Seestar by looking in the Seestar app. Go to <b>Settings > Advanced Features</b>. <br>
+                    Click <span class="highlight">"Get"</span> next to the RTSP address to reveal the IP address. Only add the IP address here (eg. XXX.XXX.XXX.XXX).
+                    <br><br>After you enter the correct IP address click <b>TEST CONNECTION</b>.
+                </div>
+            </td>
+            <td class="box" width="50%">
+                <label>PC Destination Folder:</label>
+                <input type="text" id="txtRoot" class="input-box">
+                <input type="button" value="Browse Folders..." class="btn-small" onclick="VBSBrowse()">
+                <div class="instruction-box">
+                    Where would you like to save the organized files?<br>
+                    It is highly recommended that this is an <b>EMPTY</b> folder so you can inspect files when completed.
+                </div>
+            </td>
+        </tr>
+    </table>
+    <input type="button" id="btnStart" value="Start Copy and Organize" class="btn-main" onclick="Run_Organizer()">
+    <input type="button" id="btnStop" value="STOP PROCESS" class="btn-stop" onclick="Stop_Organizer()">
+    <div id="progressContainer"><div id="progressBar"></div><div id="progressText">0%</div></div>
+    <div id="objectDisplay" style="margin-top:10px; font-weight:bold; color:#00bfff;"></div>
+    <div id="statusArea">Ready</div>
+    <div style="margin-top:20px; font-size:11px; color:#555;">Created by Gregory Zonsius</div>
+</body>
+</html>
