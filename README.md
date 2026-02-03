@@ -1,7 +1,24 @@
 # Seestar S50 / S30 File Organizer
 
 A Windows-based HTA + VBScript utility that copies, cleans, and organizes
-image data from the ZWO Seestar S50 and S30 telescopes.
+image data from the ZWO Seestar smart telescopes.
+
+With your Seestar and PC on the same network you will be able to click one button and a script will do the following.
+Objects will be copied over the Network from your Seestar to your computers.  You will specify the IP address of your Seestar on the Network and the location where you want to save the files.
+It will then organize files into the following directory structure.
+
+Example - M 31
+M31
+  2026-02-02 (Seestar S30 EQ)
+    Originals
+      Lights
+    Processed
+      Internally Processed
+
+The date comes from the date of the first .fit in the object
+Lights are stored in the Lights folder (Only .fit files are copied over)
+Seestar stacked photos are stored in the Internally Processed folder
+
 
 ## Features
 - Dark mode HTA interface
