@@ -32,9 +32,10 @@ Example - M 31 (M 31 and M 31_sub on Seestar)
 1. Download the repository
 2. Place both files in the same folder
 3. Double-click `SeestarOrganizer.hta` to run
-4. Enter your Seestar IP address
-5. Choose an empty destination folder
-6. Click **START**
+4. Enter your setup name
+5. Enter your Seestar IP address
+6. Choose an empty destination folder
+7. Click **START**
 
 ## Security Note
 This project uses HTA and VBScript, which may trigger antivirus warnings.
