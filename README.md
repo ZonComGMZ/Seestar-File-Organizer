@@ -42,7 +42,6 @@ All code is plain text and can be audited before running.
 
 ## Disclaimer
 - This is an unofficial community tool. Use at your own risk. We will not be responsible for any data loss.
-- This was created as a need for me specifically.  It took a lot of time to create this from a non-programmer person.  As a result any further development may not be done by me.
 
 #
 
@@ -56,6 +55,9 @@ Choose any amount — all versions are identical.
 - 🚀 [$15 – Recommended](https://connect.intuit.com/pay/ZonCom/scs-v1-327c39405a594f149c3ecc75a84eaee5eb22a81acbc941ff8de4846f62762604f631de683ed24714809b05ead3d3ec1e?locale=EN_US)
 - 🛰️ [$20 – Super Supporter](https://connect.intuit.com/pay/ZonCom/scs-v1-b372680e67b0454b97cc2dbf075735c0183cdabc0b4f4e3299cfdc74f62b72a97b15ec6ca5c340e585d0e9cedf7d53e1?locale=EN_US)
 
+After payment, download the ZIP and run locally.
+No activation. No tracking. 
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0).
@@ -65,7 +67,7 @@ terms of the GPL.
 
 ## Contributions & Modifications
 
-This repository is the **official upstream source** maintained by the original
+This repository is the **OFFICIAL Upstream Source** maintained by the original
 developer.
 
 While the GPL allows forks and independent modifications, contributions,
@@ -74,7 +76,6 @@ improvements, and bug fixes intended for inclusion in the official version
 
 Only changes merged into this repository should be considered official or supported.
 
-After payment, download the ZIP and run locally.
-No activation. No tracking. 
+
 
 Clear Skies!!!
