@@ -19,9 +19,9 @@ Example - M 31 (M 31 and M 31_sub on Seestar)
     - Processed
       - Internally Processed
 
-The date is derived from the date of the first .fit in the object folder.
-Lights are stored in the "Lights" folder (Only .fit files are copied over).
-Seestar stacked photos are stored in the "Internally Processed" folder (Only .fit and .jpg files are copied over).
+- The date is derived from the date of the first .fit in the object folder.
+- Lights are stored in the "Lights" folder (Only .fit files are copied over).
+- Seestar stacked photos are stored in the "Internally Processed" folder (Only .fit and .jpg files are copied over).
 
 ## Requirements
 - Windows 10 or 11
