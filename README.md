@@ -58,7 +58,7 @@ please consider supporting development.
 
 Choose any amount — all versions are identical.
 
-- 💫 [$5 – Thank You Supporter](https://yourlink.com/seestar-5](https://connect.intuit.com/pay/ZonCom/scs-v1-e663c4f8d35749289b5ad78fd6b51e133f8471891b10494a8dacc3552adcdad2fb41f4b1df674f8faed3b61e82732df1?locale=EN_US)
+- 💫 [$5 – Thank You Supporter](https://connect.intuit.com/pay/ZonCom/scs-v1-e663c4f8d35749289b5ad78fd6b51e133f8471891b10494a8dacc3552adcdad2fb41f4b1df674f8faed3b61e82732df1?locale=EN_US)]
 - 🌟 [$10 – Power User](https://yourlink.com/seestar-10](https://connect.intuit.com/pay/ZonCom/scs-v1-1d7606a7ea7e434da29db02d730190489e18a9a88ad1411cb769c7e29dddda413b56f53d331849ca90b770154d8ee7d5?locale=EN_US)
 - 🚀 [$15 – Recommended](https://yourlink.com/seestar-15](https://connect.intuit.com/pay/ZonCom/scs-v1-327c39405a594f149c3ecc75a84eaee5eb22a81acbc941ff8de4846f62762604f631de683ed24714809b05ead3d3ec1e?locale=EN_US)
 - 🛰️ [$20 – Super Supporter](https://yourlink.com/seestar-20](https://connect.intuit.com/pay/ZonCom/scs-v1-b372680e67b0454b97cc2dbf075735c0183cdabc0b4f4e3299cfdc74f62b72a97b15ec6ca5c340e585d0e9cedf7d53e1?locale=EN_US)
