@@ -4,6 +4,7 @@ A Windows-based HTA + VBScript utility that copies, cleans, and organizes
 image data from the ZWO Seestar smart telescopes.
 
 With your Seestar and PC on the same network you will be able to click one button and a script will do the following.
+
 Objects will be copied over the Network from your Seestar to your computers.  You will specify the IP address of your Seestar on the Network and the location where you want to save the files.
 It will then organize files into the following directory structure.
 
