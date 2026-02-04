@@ -8,8 +8,8 @@ With your Seestar and PC on the same network you will be able to click one butto
 Objects will be copied over the network from your Seestar to your computer.  You will specify the IP address of your Seestar on the network and the location where you want to save the files on your computer.
 It will then organize files into the following directory structure.
 
-Example - M 31
-- M31
+Example - M 31 (M 31 and M 31_sub on Seestar)
+- M 31
   - 2026-02-02 (Seestar S30 EQ)
     - Originals
       - Lights
