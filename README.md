@@ -1,7 +1,6 @@
 # Seestar S50 / S30 File Organizer
 
-A Windows-based HTA + VBScript utility that copies, cleans, and organizes
-image data from the ZWO Seestar smart telescopes.
+This utility copies, cleans, and organizes image data from the ZWO Seestar smart telescopes to your computer.
 
 With your Seestar and PC on the same network you will be able to click one button and a script will do the following.
 
@@ -10,15 +9,15 @@ It will then organize files into the following directory structure.
 
 Example - M 31 (M 31 and M 31_sub on Seestar)
 - M 31
-  - 2026-02-02 (Seestar S30 EQ)
+  - 2026-01-01 (Seestar S50 EQ)
     - Originals
       - Lights
     - Processed
       - Internally Processed
 
 The date comes from the date of the first .fit in the object
-Lights are stored in the Lights folder (Only .fit files are copied over)
-Seestar stacked photos are stored in the Internally Processed folder
+Lights are stored in the "Lights" folder (Only .fit files are copied over)
+Seestar stacked photos are stored in the "Internally Processed" folder
 
 
 ## Features
@@ -34,13 +33,13 @@ Seestar stacked photos are stored in the Internally Processed folder
 
 ## Requirements
 - Windows 10 or 11
-- Seestar S50 or S30 on the same network
+- Seestar and computer on the same network
 - Windows Scripting Host enabled
 
 ## How to Use
 1. Download the repository
 2. Place both files in the same folder
-3. Double-click `SeestarOrganizer.hta`
+3. Double-click `SeestarOrganizer.hta` to run
 4. Enter your Seestar IP address
 5. Choose an empty destination folder
 6. Click **START**
@@ -65,4 +64,6 @@ Choose any amount — all versions are identical.
 - 🛰️ [$20 – Super Supporter](https://connect.intuit.com/pay/ZonCom/scs-v1-b372680e67b0454b97cc2dbf075735c0183cdabc0b4f4e3299cfdc74f62b72a97b15ec6ca5c340e585d0e9cedf7d53e1?locale=EN_US)
 
 After payment, download the ZIP and run locally.
-No activation. No tracking. Offline forever.
+No activation. No tracking. 
+
+Clear Skies!!!
