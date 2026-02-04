@@ -9,12 +9,12 @@ Objects will be copied over the network from your Seestar to your computer.  You
 It will then organize files into the following directory structure.
 
 Example - M 31
--M31
-  -2026-02-02 (Seestar S30 EQ)
-    -Originals
-      -Lights
-    -Processed
-      -Internally Processed
+- M31
+  - 2026-02-02 (Seestar S30 EQ)
+    - Originals
+      - Lights
+    - Processed
+      - Internally Processed
 
 The date comes from the date of the first .fit in the object
 Lights are stored in the Lights folder (Only .fit files are copied over)
