@@ -51,9 +51,7 @@ All code is plain text and can be audited before running.
 ## Disclaimer
 This is an unofficial community tool. Use at your own risk. We will not be responsible for any data loss.
 
-##
-
---------------------------------------------------------------------------------------------------------------------------------
+#
 
 This tool is free to use, but if it saves you time and frustration,
 please consider supporting development.
