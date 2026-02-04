@@ -5,7 +5,7 @@ This utility copies, cleans, and organizes image data from the ZWO Seestar smart
 With your Seestar and PC on the same network you will be able to click one button and a script will do the following.
 
 Objects will be copied over the network from your Seestar to your computer.  You will specify the IP address of your Seestar on the network and the location where you want to save the files on your computer.
-It will then organize files into the following directory structure.
+It will then organize files into the following directory structure on your computer.
 
 Example - M 31 (M 31 and M 31_sub on Seestar)
 - M 31
