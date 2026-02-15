@@ -1,5 +1,7 @@
 # Seestar S50 / S30 File Organizer
 
+<img width="450" height="540" alt="Seestar Organizer Pro 01" src="https://github.com/user-attachments/assets/a7d51739-f90c-4a84-b513-1e0535a3f906" />
+
 This utility copies, cleans, and organizes image data from the ZWO Seestar smart telescopes to your computer.
 
 With your Seestar and PC on the same network you will be able to click one button and a script will do the following.
